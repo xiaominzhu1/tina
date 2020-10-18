@@ -47,24 +47,29 @@ function EditButton() {
 
 ### Create & Register Form with useForm,pass useForm into usePlugin hook
 
-- [ ] import useForm and usePlugin
+#### import useForm and usePlugin
 
-- [ ] define form config object
+#### define form config object
 
 ```jsx
-id: "1",
-    label: "Edit Page",
-      {
+{
         name: "title",
-        label: "Title",
+        label: "TITLE",
         component: "text",
-      },
-      {
-        name: "body",
-        label: "Body",
+},
+{
+        component: "select",
+        name: "frontmatter.names",
+        label: "Names",
+        description: "Select an Hello name",
+        options: ["Tina", "React", "Next", "Zoooommmbiiee"],
+},
+{
+        name: "description",
         component: "textarea",
-      },
-    ],
+        label: "Description",
+        description: "Enter the post description here",
+}
 ```
 
 - [ ] 1. create Form
@@ -97,7 +102,7 @@ Text，Textarea，Number，Image，'Color'，Toggle，Select，Tags，List，Gro
 
 ## Track and Save data changes with Backend
 
-（Learning)
+（Learning to be updated)
 
 ```jsx
 async loadInitialValues() {
