@@ -22,7 +22,7 @@ function PageContent() {
 
       {
         component: "select",
-        name: "frontmatter.names",
+        name: "frontmatter.name",
         label: "Names",
         description: "Select an Hello name",
         options: ["Tina", "React", "Next", "Zoooommmbiiee"],
@@ -64,9 +64,8 @@ function PageContent() {
         body: JSON.stringify({
           id: 1,
           title: formData.title,
-          body: formData.body,
           description: formData.description,
-          name: formData.frontmatter.names,
+          name: formData.frontmatter.name,
         }),
         headers: {
           "Content-type": "application/json; charset=UTF-8",
@@ -87,7 +86,7 @@ function PageContent() {
     <div>
       {/* render 'editableData' returned from 'useForm' hook */}
       <h2>{editableData?.title}</h2>
-      <h4>{editableData?.frontmatter?.names}</h4>
+      <h4>{editableData?.frontmatter?.name}</h4>
 
       <p>{editableData?.description}</p>
       {/* <div style={image && { backgroundImage: `url(${image.src})` }}></div> */}
