@@ -33,17 +33,21 @@ function PageContent() {
         label: "Description",
         description: "Enter the post description here",
       },
+
       {
         label: "IMAGE",
-        name: "image",
+        name: "image.src",
         component: "image",
-        parse: (media) => `/static/${media.filename}`,
+        parse: (media) => {
+          if (!media) return "";
+          return media.id.replace("/static", "");
+        },
 
-        // Decide the file upload directory for the post
-        uploadDir: () => "/public/static/",
+        // Decide the file upload directory for the page
+        uploadDir: () => "/static/public/",
 
         // Generate the src attribute for the preview image.
-        previewSrc: (fullSrc) => fullSrc.replace("/public", ""),
+        previewSrc: (fullSrc) => fullSrc.replace("/static", ""),
       },
     ],
 
@@ -66,6 +70,7 @@ function PageContent() {
           title: formData.title,
           description: formData.description,
           name: formData.frontmatter.name,
+          image: formData.image.src, //src:bird.jpg
         }),
         headers: {
           "Content-type": "application/json; charset=UTF-8",
@@ -85,11 +90,21 @@ function PageContent() {
   return (
     <div>
       {/* render 'editableData' returned from 'useForm' hook */}
-      <h2>{editableData?.title}</h2>
-      <h4>{editableData?.frontmatter?.name}</h4>
+      <div
+        style={
+          editableData?.image && {
+            backgroundImage: `url(${editableData?.image.src})`,
+            height: "800px",
+            width: "100%",
+            backgroundRepeat: "no-repeat",
+          }
+        }
+      >
+        <h2>{editableData?.title}</h2>
+        <h4>{editableData?.frontmatter?.name}</h4>
 
-      <p>{editableData?.description}</p>
-      {/* <div style={image && { backgroundImage: `url(${image.src})` }}></div> */}
+        <p>{editableData?.description}</p>
+      </div>
       <EditButton />
     </div>
   );
