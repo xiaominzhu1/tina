@@ -131,3 +131,42 @@ async onSubmit(formData) {
         .catch((e) => console.error(e));
     },
 ```
+
+## useScreenPlugin
+
+### Component Plugins
+
+The ScreenPlugin has three main pieces: a name, an icon, and a React Component, can render modal UI and handle various content editing needs
+
+```jsx
+const DoggePlugin = {
+  name: "SleepyDogge",
+  Icon: () => (
+    <span role="img" aria-label="dogge">
+      🐶
+    </span>
+  ),
+  layout: "popup",
+  Component() {
+    return <img src="dogge.jpg" alt="dogge" style={divStyle} />;
+  },
+};
+```
+
+If you want to render multiple modals in one Component, note: different NAMEs in plugin
+
+```jsx
+function Plugins({ sleep }) {
+  useScreenPlugin(DoggePlugin);
+  useScreenPlugin(CatPlugin);
+  useScreenPlugin(CrazyPlugin);
+
+  return <div>{sleep}</div>;
+}
+```
+
+## use react-tinacms-github
+
+```jsx
+yarn add react-tinacms-github
+```
